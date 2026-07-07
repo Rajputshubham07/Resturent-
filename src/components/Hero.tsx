@@ -39,8 +39,8 @@ export default function Hero() {
       </video>
 
       {/* Luxury Radial/Vignette Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-luxury-black z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.1)_0%,rgba(5,5,5,0.7)_80%)] z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-85% to-luxury-black z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.4)_90%)] z-10 pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-20 max-w-5xl mx-auto px-6 text-center flex flex-col items-center select-none">
