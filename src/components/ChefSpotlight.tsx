@@ -69,12 +69,11 @@ export default function ChefSpotlight() {
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
             >
               <source src="/Resturent Kitchen.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-black/30 to-transparent" />
             
             {/* Tag on Video */}
             <div className="absolute bottom-6 left-6 px-4 py-2 bg-luxury-black/80 backdrop-blur-md border border-gold-500/20">
