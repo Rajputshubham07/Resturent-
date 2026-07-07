@@ -2,25 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
-  const handleScroll = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
-  };
-
   return (
     <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
       {/* Background Video */}
@@ -89,22 +73,29 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 1 }}
-          className="mt-12 flex flex-col sm:flex-row items-center gap-6"
+          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-3xl"
         >
-          <button
-            onClick={(e) => handleScroll(e, "reservations")}
-            className="w-full sm:w-auto px-8 py-3.5 bg-gold-500 hover:bg-gold-400 text-luxury-black font-semibold text-xs tracking-[0.2em] uppercase transition-all duration-300 shadow-[0_4px_25px_rgba(197,168,128,0.25)] hover:shadow-[0_4px_35px_rgba(197,168,128,0.45)] cursor-pointer"
+          <Link
+            href="/reservations"
+            className="w-full sm:w-auto px-8 py-3.5 bg-gold-500 hover:bg-gold-400 text-luxury-black font-semibold text-xs tracking-[0.2em] uppercase transition-all duration-300 shadow-[0_4px_25px_rgba(197,168,128,0.25)] hover:shadow-[0_4px_35px_rgba(197,168,128,0.45)] text-center cursor-pointer"
           >
-            Reserve a Table
-          </button>
+            Reservations
+          </Link>
           
-          <button
-            onClick={(e) => handleScroll(e, "menu")}
+          <Link
+            href="/menu"
             className="w-full sm:w-auto px-8 py-3.5 border border-white/20 hover:border-gold-500 text-white hover:text-gold-500 font-semibold text-xs tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center gap-2 cursor-pointer group"
           >
             <span>Explore Menu</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-300" />
-          </button>
+          </Link>
+
+          <Link
+            href="/gallery"
+            className="w-full sm:w-auto px-8 py-3.5 border border-white/20 hover:border-gold-500 text-white hover:text-gold-500 font-semibold text-xs tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center gap-2 cursor-pointer group"
+          >
+            <span>View Gallery</span>
+          </Link>
         </motion.div>
       </div>
 
