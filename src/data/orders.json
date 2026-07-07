@@ -1,0 +1,27 @@
+[
+  {
+    "id": "ET-673007",
+    "customerName": "Shubham Singh",
+    "tableNumber": "04",
+    "mobileNumber": "9934858143",
+    "items": [
+      {
+        "name": "L'Étoile Tapas Platter",
+        "quantity": 1,
+        "price": "₹499"
+      },
+      {
+        "name": "Avocado Egg Toast",
+        "quantity": 1,
+        "price": "₹249"
+      }
+    ],
+    "subtotal": 748,
+    "gst": 135,
+    "serviceCharge": 0,
+    "grandTotal": 883,
+    "paymentMode": "counter",
+    "status": "completed",
+    "timestamp": "7/7/2026, 8:14:28 pm"
+  }
+]

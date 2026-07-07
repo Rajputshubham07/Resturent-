@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "name": "L'Étoile Tapas Platter",
+    "price": "₹499",
+    "category": "Starters",
+    "image": "/assorted-starters-feast.avif",
+    "desc": "A luxurious spread of assorted starters featuring miniature burgers, fries, garlic crostini, chicken wings, and gourmet dips."
+  },
+  {
+    "id": 2,
+    "name": "Avocado Egg Toast",
+    "price": "₹249",
+    "category": "Starters",
+    "image": "/avocado-egg-toast.avif",
+    "desc": "Thick sourdough toast topped with sliced organic boiled eggs, fresh avocado slices, spinach, and microgreens."
+  },
+  {
+    "id": 3,
+    "name": "Crispy Calamari & Bloomin' Onion",
+    "price": "₹349",
+    "category": "Starters",
+    "image": "/fried-calamari-bloomin-onion.avif",
+    "desc": "Golden fried calamari rings served alongside a crispy spiced bloomin' onion flower and garlic sauce."
+  },
+  {
+    "id": 4,
+    "name": "Sliced Beef Steak Strips",
+    "price": "₹399",
+    "category": "Starters",
+    "image": "/beef-steak-appetizers.avif",
+    "desc": "Tender grilled beef steak strips served with sliced red onions, fresh lettuce, and dipping sauce."
+  },
+  {
+    "id": 5,
+    "name": "Steamed Momos with Chutney",
+    "price": "₹249",
+    "category": "Starters",
+    "image": "/steamed-momos.jpg",
+    "desc": "Thin-skin dumplings filled with seasoned vegetables, served with hot red chili chutney and mayonnaise."
+  },
+  {
+    "id": 6,
+    "name": "Spicy Pani Puri / Gol Gappa",
+    "price": "₹199",
+    "category": "Starters",
+    "image": "/spicy-pani-puri.jpg",
+    "desc": "Crispy hollow puri shells filled with spiced potato and chickpea mix, topped with green chilies, onions, and tangy water."
+  },
+  {
+    "id": 7,
+    "name": "Grilled Corn & Cheese Sandwich",
+    "price": "₹249",
+    "category": "Starters",
+    "image": "/grilled-cheese-sandwich.jpg",
+    "desc": "Toasted panini loaded with sweet corn kernels, green bell peppers, and melted cheddar and mozzarella cheese."
+  },
+  {
+    "id": 8,
+    "name": "Samosa Cholay Chaat",
+    "price": "₹199",
+    "category": "Starters",
+    "image": "/samosa-cholay-chaat.jpg",
+    "desc": "Two crispy potato samosas served in a bowl of spicy chickpea curry (cholay) and garnished with sweet yogurt and mint."
+  },
+  {
+    "id": 9,
+    "name": "Balsamic Salmon Fillet",
+    "price": "₹699",
+    "category": "Main Course",
+    "image": "/grilled-salmon-balsamic.avif",
+    "desc": "Pan-seared salmon fillet resting on sautéed garlic spinach, topped with a cucumber tomato salsa and balsamic reduction."
+  },
+  {
+    "id": 10,
+    "name": "Bacon Cheeseburger & Fries",
+    "price": "₹499",
+    "category": "Main Course",
+    "image": "/bacon-cheeseburger-fries.avif",
+    "desc": "A gourmet beef patty topped with crispy bacon, melted cheese, and onion strings in a toasted bun, served with fries."
+  },
+  {
+    "id": 11,
+    "name": "Honey BBQ Pork Ribs Plate",
+    "price": "₹649",
+    "category": "Main Course",
+    "image": "/honey-bbq-ribs-plate.avif",
+    "desc": "Slow-roasted tender pork ribs glazed in our house honey BBQ sauce, served with fresh lettuce salad."
+  },
+  {
+    "id": 12,
+    "name": "Double Slabs BBQ Ribs Board",
+    "price": "₹999",
+    "category": "Main Course",
+    "image": "/bbq-pork-ribs-board.avif",
+    "desc": "Double portion of smoked pork ribs glazed in honey BBQ sauce, served on a rustic wooden board with roasted peppers."
+  },
+  {
+    "id": 13,
+    "name": "Grand BBQ Ribs Platter",
+    "price": "₹899",
+    "category": "Main Course",
+    "image": "/honey-bbq-ribs-platter.avif",
+    "desc": "A full slab of honey BBQ ribs served with fresh tomato slices, pickles, and a bucket of cheesy French fries."
+  },
+  {
+    "id": 14,
+    "name": "Veg Manchurian with Noodles",
+    "price": "₹429",
+    "category": "Main Course",
+    "image": "/veg-manchurian-noodles.jpg",
+    "desc": "Crispy vegetable dumplings tossed in a dark, tangy soy-garlic Manchurian sauce, paired with stir-fried hakka noodles."
+  },
+  {
+    "id": 15,
+    "name": "Paneer Masala & Paratha Feast",
+    "price": "₹449",
+    "category": "Main Course",
+    "image": "/paneer-masala-paratha-rasgulla.jpg",
+    "desc": "Rich paneer tikka masala served with flaky, layered lacha paratha, sliced green chilies, and a side bowl of sweet rasgullas."
+  },
+  {
+    "id": 16,
+    "name": "Classic Chole Bhature Platter",
+    "price": "₹349",
+    "category": "Main Course",
+    "image": "/chole-bhature-platter.jpg",
+    "desc": "Two large, fluffy fried bhature breads served with a bowl of spicy chickpea curry, green chutney, pickle, and onions."
+  },
+  {
+    "id": 17,
+    "name": "Tandoori Chicken Leg Quarters",
+    "price": "₹499",
+    "category": "Main Course",
+    "image": "/tandoori-chicken.jpg",
+    "desc": "Two leg quarters marinated in red yogurt spices and charcoal grilled, served with sliced onions and mint chutney."
+  },
+  {
+    "id": 18,
+    "name": "Fries, Pizza & Coffee Combo",
+    "price": "₹599",
+    "category": "Pizza",
+    "image": "/fries-pizza-cold-coffee.jpg",
+    "desc": "A classic personal cheese pizza served with a tray of spiced french fries and two cold coffees with chocolate drizzle."
+  },
+  {
+    "id": 19,
+    "name": "Veg Chow Mein Noodles",
+    "price": "₹349",
+    "category": "Pasta",
+    "image": "/veg-chow-mein-noodles.jpg",
+    "desc": "Stir-fried noodles tossed with julienned carrots, cabbage, onions, and green bell peppers in light soy sauce."
+  },
+  {
+    "id": 20,
+    "name": "Baked Fusilli Bolognese",
+    "price": "₹449",
+    "category": "Pasta",
+    "image": "/baked-fusilli-pasta.jpg",
+    "desc": "Fusilli pasta tossed in a rich minced meat bolognese sauce, loaded with mozzarella and baked until bubbly, served with garlic bread."
+  },
+  {
+    "id": 21,
+    "name": "Saffron Banana French Toast",
+    "price": "₹349",
+    "category": "Desserts",
+    "image": "/banana-blueberry-french-toast.avif",
+    "desc": "Thick-sliced brioche soaked in saffron cardamom custard, griddled golden, and topped with sliced bananas, blueberries, and honey."
+  },
+  {
+    "id": 22,
+    "name": "Chocolate Waffles on Sticks",
+    "price": "₹299",
+    "category": "Desserts",
+    "image": "/chocolate-waffles-sticks.jpg",
+    "desc": "Triangular waffle slices served on sticks, heavily drizzled with milk chocolate, white chocolate sauce, and chocolate chips."
+  },
+  {
+    "id": 23,
+    "name": "Saffron Pistachio Rasmalai",
+    "price": "₹249",
+    "category": "Desserts",
+    "image": "/saffron-rasmalai.jpg",
+    "desc": "Soft and spongy cottage cheese dumplings soaked in rich, saffron-infused cardamom milk, garnished with sliced almonds and pistachios."
+  },
+  {
+    "id": 24,
+    "name": "Crispy Saffron Jalebi",
+    "price": "₹149",
+    "category": "Desserts",
+    "image": "/saffron-jalebi.jpg",
+    "desc": "Crispy, syrup-soaked spiral sweets infused with premium saffron strands, served warm."
+  }
+]

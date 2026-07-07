@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import Image from "next/image";
@@ -22,6 +22,19 @@ const galleryImages = [
 
 export default function Gallery() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
+  const [images, setImages] = useState<any[]>(galleryImages);
+
+  useEffect(() => {
+    fetch("/api/admin/gallery")
+      .then((res) => {
+        if (res.ok) return res.json();
+      })
+      .then((data) => {
+        if (data && Array.isArray(data)) setImages(data);
+      })
+      .catch((err) => console.error("Error loading gallery:", err));
+  }, []);
+
 
   const openLightbox = (index: number) => {
     setActiveImageIndex(index);
@@ -34,14 +47,15 @@ export default function Gallery() {
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (activeImageIndex === null) return;
-    setActiveImageIndex((prev) => (prev! + 1) % galleryImages.length);
+    setActiveImageIndex((prev) => (prev! + 1) % images.length);
   };
 
   const prevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (activeImageIndex === null) return;
-    setActiveImageIndex((prev) => (prev! - 1 + galleryImages.length) % galleryImages.length);
+    setActiveImageIndex((prev) => (prev! - 1 + images.length) % images.length);
   };
+
 
   return (
     <section id="gallery" className="py-24 bg-luxury-black relative overflow-hidden">
@@ -65,7 +79,8 @@ export default function Gallery() {
 
         {/* Masonry Grid */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-          {galleryImages.map((image, index) => (
+          {images.map((image, index) => (
+
             <motion.div
               key={image.id}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -147,8 +162,8 @@ export default function Gallery() {
             >
               <div className="relative w-full h-full max-h-[70vh]">
                 <Image
-                  src={galleryImages[activeImageIndex].src}
-                  alt={galleryImages[activeImageIndex].alt}
+                  src={images[activeImageIndex].src}
+                  alt={images[activeImageIndex].alt}
                   fill
                   sizes="100vw"
                   className="object-contain"
@@ -156,9 +171,10 @@ export default function Gallery() {
                 />
               </div>
               <span className="mt-4 text-xs tracking-widest text-gray-400 text-center uppercase font-light">
-                {galleryImages[activeImageIndex].alt}
+                {images[activeImageIndex].alt}
               </span>
             </motion.div>
+
           </motion.div>
         )}
       </AnimatePresence>

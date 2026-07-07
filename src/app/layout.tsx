@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
+import CustomerLoginModal from "@/components/CustomerLoginModal";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -31,7 +33,10 @@ export default function RootLayout({
       className={`dark ${playfair.variable} ${inter.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full bg-luxury-black text-foreground flex flex-col selection:bg-gold-500 selection:text-luxury-black">
-        {children}
+        <CartProvider>
+          <CustomerLoginModal />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

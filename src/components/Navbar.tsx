@@ -1,9 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ShoppingBag, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/context/CartContext";
+import CartDrawer from "./CartDrawer";
+import ProfileDrawer from "./ProfileDrawer";
+
 
 const navLinks = [
   { name: "Home", href: "/#home" },
@@ -27,6 +31,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [cartOpen, setCartOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const { totalItems } = useCart();
+
   const pathname = usePathname();
 
   useEffect(() => {
@@ -178,7 +186,27 @@ export default function Navbar() {
           {/* Reserve Button & Theme Toggle (Desktop) */}
           <div className="hidden md:flex items-center gap-4">
             <button
+              onClick={() => setCartOpen(true)}
+              className="p-2 border border-gold-500/20 text-gold-500 hover:text-white hover:border-gold-500 transition-colors duration-300 rounded-none cursor-pointer relative"
+              aria-label="Open Cart"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-4.5 h-4.5 bg-gold-500 text-luxury-black text-[9px] font-bold rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => setProfileOpen(true)}
+              className="p-2 border border-gold-500/20 text-gold-500 hover:text-white hover:border-gold-500 transition-colors duration-300 rounded-none cursor-pointer"
+              aria-label="Open Profile"
+            >
+              <User className="w-4 h-4" />
+            </button>
+            <button
               onClick={toggleTheme}
+
               className="p-2 border border-gold-500/20 text-gold-500 hover:text-white hover:border-gold-500 transition-colors duration-300 rounded-none cursor-pointer"
               aria-label="Toggle Theme"
             >
@@ -193,16 +221,44 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-gray-400 hover:text-white transition-colors cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+
+          {/* Mobile Cart, Profile & Menu Toggle */}
+          <div className="flex items-center gap-1.5 md:hidden">
+            <button
+              onClick={() => setProfileOpen(true)}
+              className="p-2 text-gold-500 hover:text-white transition-colors cursor-pointer"
+              aria-label="Open Profile"
+            >
+              <User className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setCartOpen(true)}
+              className="p-2 text-gold-500 hover:text-white transition-colors cursor-pointer relative"
+              aria-label="Open Cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 w-4 h-4 bg-gold-500 text-luxury-black text-[9px] font-bold rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-gray-400 hover:text-white transition-colors cursor-pointer"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </motion.nav>
+
+      {/* Cart & Profile Drawers */}
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <ProfileDrawer isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
+
+
 
       {/* Mobile Menu Panel */}
       <AnimatePresence>

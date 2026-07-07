@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search } from "lucide-react";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext";
 
 // Full menu items list
 const menuData = [
@@ -45,8 +46,21 @@ const categories = ["All", "Starters", "Main Course", "Pizza", "Pasta", "Dessert
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const { cartItems, addToCart, updateQuantity } = useCart();
+  const [menuItems, setMenuItems] = useState<any[]>(menuData);
 
-  const filteredMenu = menuData.filter((item) => {
+  useEffect(() => {
+    fetch("/api/admin/menu")
+      .then((res) => {
+        if (res.ok) return res.json();
+      })
+      .then((data) => {
+        if (data && Array.isArray(data)) setMenuItems(data);
+      })
+      .catch((err) => console.error("Error loading menu:", err));
+  }, []);
+
+  const filteredMenu = menuItems.filter((item) => {
     const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           item.desc.toLowerCase().includes(searchQuery.toLowerCase());
@@ -153,14 +167,43 @@ export default function Menu() {
                     </p>
                   </div>
                   
-                  <div className="flex items-center justify-between text-[9px] tracking-[0.2em] text-gray-600 uppercase mt-2">
-                    <span>{item.category}</span>
-                    <span className="opacity-0 group-hover:opacity-100 text-gold-500 transition-opacity duration-300 font-semibold">
-                      Fine Selection
-                    </span>
-                  </div>
+                  {(() => {
+                    const cartItem = cartItems.find((i) => i.id === item.id);
+                    return (
+                      <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-900/50">
+                        <span className="text-[9px] tracking-[0.2em] text-gray-600 uppercase">{item.category}</span>
+                        <div>
+                          {cartItem ? (
+                            <div className="flex items-center gap-2.5">
+                              <button 
+                                onClick={() => updateQuantity(item.id, cartItem.quantity - 1)}
+                                className="w-6 h-6 border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-luxury-black transition-colors text-xs font-light cursor-pointer"
+                              >
+                                -
+                              </button>
+                              <span className="text-white text-xs font-medium w-4 text-center">{cartItem.quantity}</span>
+                              <button 
+                                onClick={() => updateQuantity(item.id, cartItem.quantity + 1)}
+                                className="w-6 h-6 border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-luxury-black transition-colors text-xs font-light cursor-pointer"
+                              >
+                                +
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => addToCart({ id: item.id, name: item.name, price: item.price, image: item.image, category: item.category })}
+                              className="px-4 py-1.5 border border-gold-500/30 text-gold-500 hover:bg-gold-500 hover:text-luxury-black text-[9px] tracking-[0.15em] uppercase font-semibold transition-all duration-300 rounded-none cursor-pointer"
+                            >
+                              Add to Cart
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               </motion.div>
+
             ))}
           </AnimatePresence>
         </motion.div>
