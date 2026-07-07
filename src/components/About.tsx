@@ -162,7 +162,7 @@ export default function About() {
               Our culinary philosophy is simple: celebrate the pure taste of local ingredients. By utilizing modern preparation techniques like sous-vide, liquid nitrogen flash freezing, and wood-fire smoking, we enhance natural flavors rather than masking them.
             </p>
             <p>
-              Led by Executive Chef Shubhamsingh, our culinary crew operates like a chamber orchestra. Every cut is measured to the millimeter; every reduction is timed to the second; every plate is hand-checked under direct kitchen spotlighting before serving.
+              Led by Executive Chef Sunil Kumar, our culinary crew operates like a chamber orchestra. Every cut is measured to the millimeter; every reduction is timed to the second; every plate is hand-checked under direct kitchen spotlighting before serving.
             </p>
             <p>
               Our restaurant has been recognized with the Michelin Star of culinary excellence and holds the TripAdvisor Grand Award. We invite you to sit back, disconnect from the outer world, and immerse your senses in our bespoke dining journey.

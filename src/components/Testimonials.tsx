@@ -13,7 +13,7 @@ const initialReviews = [
   },
   {
     rating: 5,
-    text: "Amazing food, atmosphere, and service. Chef Shubhamsingh's butter chicken and lamb shanks are absolute masterpieces. An absolute jewel of modern dining.",
+    text: "Amazing food, atmosphere, and service. Chef Sunil Kumar's butter chicken and lamb shanks are absolute masterpieces. An absolute jewel of modern dining.",
     author: "Marcus Pierre",
     title: "Gastronomy Critic",
   },

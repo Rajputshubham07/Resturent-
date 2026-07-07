@@ -23,7 +23,7 @@ const events = [
     title: "Chef&apos;s Special Tasting",
     date: "Monthly Exclusive",
     time: "Limited Seating | RSVP",
-    desc: "A bespoke 7-course tasting menu curated by Chef Shubhamsingh, paired with hand-selected vintage wines from our private cellar.",
+    desc: "A bespoke 7-course tasting menu curated by Chef Sunil Kumar, paired with hand-selected vintage wines from our private cellar.",
     image: "/interior3.avif",
   },
 ];

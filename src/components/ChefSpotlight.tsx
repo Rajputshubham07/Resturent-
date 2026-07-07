@@ -87,13 +87,13 @@ export default function ChefSpotlight() {
             <div>
               <span className="text-xs tracking-[0.3em] text-gold-500 font-light uppercase">The Culinary Visionary</span>
               <h2 className="mt-3 font-serif text-3xl md:text-4xl tracking-wider text-white uppercase">
-                Chef Shubhamsingh
+                Chef Sunil Kumar
               </h2>
               <div className="mt-4 w-16 h-[1px] bg-gold-500" />
             </div>
 
             <p className="text-gray-300 font-light text-sm md:text-base leading-relaxed">
-              With over 15 years of culinary experience in Paris, Tokyo, and London, Chef Shubhamsingh blends precision engineering with organic flavors. Known for his microscopic attention to ingredient temperatures, Shubhamsingh transforms classical French cuisine into modern theatrical experiences.
+              With over 15 years of culinary experience in Paris, Tokyo, and London, Chef Sunil Kumar blends precision engineering with organic flavors. Known for his microscopic attention to ingredient temperatures, Sunil Kumar transforms classical French cuisine into modern theatrical experiences.
             </p>
 
             <blockquote className="border-l border-gold-500 pl-6 py-1 text-gold-500/90 italic font-serif text-lg">
