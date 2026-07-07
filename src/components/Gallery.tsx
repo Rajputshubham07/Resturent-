@@ -6,17 +6,17 @@ import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import Image from "next/image";
 
 const galleryImages = [
-  { id: 1, src: "/dish1.avif", alt: "Signature Entrée Plating" },
-  { id: 2, src: "/dish2.avif", alt: "Gourmet Starter Presentation" },
-  { id: 3, src: "/dish3.avif", alt: "Charcoal Paneer Tikka" },
-  { id: 4, src: "/dish7.avif", alt: "Chocolate Lava Decadence" },
-  { id: 5, src: "/dish9.avif", alt: "Tandoori Chicken Masterpiece" },
-  { id: 6, src: "/dish10.avif", alt: "New York baked Cheesecake" },
+  { id: 1, src: "/assorted-starters-feast.avif", alt: "L'Étoile Tapas Platter" },
+  { id: 2, src: "/avocado-egg-toast.avif", alt: "Avocado Egg Toast" },
+  { id: 3, src: "/banana-blueberry-french-toast.avif", alt: "Banana Blueberry French Toast" },
+  { id: 4, src: "/bacon-cheeseburger-fries.avif", alt: "Bacon Cheeseburger & Fries" },
+  { id: 5, src: "/bbq-pork-ribs-board.avif", alt: "BBQ Pork Ribs Board" },
+  { id: 6, src: "/honey-bbq-ribs-platter.avif", alt: "Honey BBQ Ribs Platter" },
   { id: 7, src: "/interior1.avif", alt: "Luxury Table Settings" },
   { id: 8, src: "/interior2.avif", alt: "Ambient Dining Ambience" },
   { id: 9, src: "/interior3.avif", alt: "Culinary Precision Kitchen" },
-  { id: 10, src: "/dish14.jpg", alt: "Smoked Lamb Braise" },
-  { id: 11, src: "/dish18.jpg", alt: "Tandoori Paneer Pizza" },
+  { id: 10, src: "/steamed-momos.jpg", alt: "Steamed Momos" },
+  { id: 11, src: "/baked-fusilli-pasta.jpg", alt: "Baked Fusilli Bolognese" },
   { id: 12, src: "/interior5.avif", alt: "Master Cocktail Crafting" },
 ];
 

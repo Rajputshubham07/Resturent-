@@ -8,45 +8,39 @@ import Image from "next/image";
 // Full menu items list
 const menuData = [
   // Starters
-  { id: 1, name: "Tomato Basil Soup", price: "₹249", category: "Starters", image: "/dish1.avif", desc: "Creamy vine-ripened tomatoes simmered with fresh basil, extra virgin olive oil, and house croutons." },
-  { id: 2, name: "Garlic Bread Supreme", price: "₹199", category: "Starters", image: "/dish2.avif", desc: "Artisanal sourdough slices toasted with garlic herb butter and loaded with mozzarella cheese." },
-  { id: 3, name: "Crispy Veg Spring Rolls", price: "₹279", category: "Starters", image: "/dish5.avif", desc: "Golden fried pastry skins wrapped with fresh seasoned garden vegetables, served with sweet chili dip." },
-  { id: 4, name: "Chicken Wings", price: "₹349", category: "Starters", image: "/dish6.avif", desc: "Tender roasted chicken wings glazed in a spicy, wood-fire smoked barbecue reduction." },
-  { id: 5, name: "Paneer Tikka", price: "₹329", category: "Starters", image: "/dish3.avif", desc: "Tandoori grilled cottage cheese cubes marinated in yogurt and yellow mustard spices." },
+  { id: 1, name: "L'Étoile Tapas Platter", price: "₹499", category: "Starters", image: "/assorted-starters-feast.avif", desc: "A luxurious spread of assorted starters featuring miniature burgers, fries, garlic crostini, chicken wings, and gourmet dips." },
+  { id: 2, name: "Avocado Egg Toast", price: "₹249", category: "Starters", image: "/avocado-egg-toast.avif", desc: "Thick sourdough toast topped with sliced organic boiled eggs, fresh avocado slices, spinach, and microgreens." },
+  { id: 3, name: "Crispy Calamari & Bloomin' Onion", price: "₹349", category: "Starters", image: "/fried-calamari-bloomin-onion.avif", desc: "Golden fried calamari rings served alongside a crispy spiced bloomin' onion flower and garlic sauce." },
+  { id: 4, name: "Sliced Beef Steak Strips", price: "₹399", category: "Starters", image: "/beef-steak-appetizers.avif", desc: "Tender grilled beef steak strips served with sliced red onions, fresh lettuce, and dipping sauce." },
+  { id: 5, name: "Steamed Momos with Chutney", price: "₹249", category: "Starters", image: "/steamed-momos.jpg", desc: "Thin-skin dumplings filled with seasoned vegetables, served with hot red chili chutney and mayonnaise." },
+  { id: 6, name: "Spicy Pani Puri / Gol Gappa", price: "₹199", category: "Starters", image: "/spicy-pani-puri.jpg", desc: "Crispy hollow puri shells filled with spiced potato and chickpea mix, topped with green chilies, onions, and tangy water." },
+  { id: 7, name: "Grilled Corn & Cheese Sandwich", price: "₹249", category: "Starters", image: "/grilled-cheese-sandwich.jpg", desc: "Toasted panini loaded with sweet corn kernels, green bell peppers, and melted cheddar and mozzarella cheese." },
+  { id: 8, name: "Samosa Cholay Chaat", price: "₹199", category: "Starters", image: "/samosa-cholay-chaat.jpg", desc: "Two crispy potato samosas served in a bowl of spicy chickpea curry (cholay) and garnished with sweet yogurt and mint." },
 
   // Main Course
-  { id: 6, name: "Butter Chicken", price: "₹549", category: "Main Course", image: "/dish9.avif", desc: "Smoked tandoori chicken cooked in a rich, velvety tomato butter gravy, finished with fresh cream." },
-  { id: 7, name: "Chicken Biryani", price: "₹499", category: "Main Course", image: "/dish8.avif", desc: "Layered basmati rice dish cooked with tender chicken, whole spices, and saffron milk." },
-  { id: 8, name: "Mutton Rogan Josh", price: "₹699", category: "Main Course", image: "/dish14.jpg", desc: "A robust lamb shank delicacy braised in dark onion paste, Kashmiri chili, and mild spices." },
-  { id: 9, name: "Paneer Butter Masala", price: "₹449", category: "Main Course", image: "/dish15.jpg", desc: "Cottage cheese triangles simmered in a mildly sweet tomato and cashew paste gravy." },
-  { id: 10, name: "Veg Biryani", price: "₹399", category: "Main Course", image: "/dish16.jpg", desc: "Long-grain aromatic rice slow-cooked with fresh seasonal vegetables and biryani masala." },
-  { id: 11, name: "Dal Makhani", price: "₹349", category: "Main Course", image: "/dish17.jpg", desc: "Creamy black lentils slow-cooked overnight with tomato puree, ghee, and local butter." },
+  { id: 9, name: "Balsamic Salmon Fillet", price: "₹699", category: "Main Course", image: "/grilled-salmon-balsamic.avif", desc: "Pan-seared salmon fillet resting on sautéed garlic spinach, topped with a cucumber tomato salsa and balsamic reduction." },
+  { id: 10, name: "Bacon Cheeseburger & Fries", price: "₹499", category: "Main Course", image: "/bacon-cheeseburger-fries.avif", desc: "A gourmet beef patty topped with crispy bacon, melted cheese, and onion strings in a toasted bun, served with fries." },
+  { id: 11, name: "Honey BBQ Pork Ribs Plate", price: "₹649", category: "Main Course", image: "/honey-bbq-ribs-plate.avif", desc: "Slow-roasted tender pork ribs glazed in our house honey BBQ sauce, served with fresh lettuce salad." },
+  { id: 12, name: "Double Slabs BBQ Ribs Board", price: "₹999", category: "Main Course", image: "/bbq-pork-ribs-board.avif", desc: "Double portion of smoked pork ribs glazed in honey BBQ sauce, served on a rustic wooden board with roasted peppers." },
+  { id: 13, name: "Grand BBQ Ribs Platter", price: "₹899", category: "Main Course", image: "/honey-bbq-ribs-platter.avif", desc: "A full slab of honey BBQ ribs served with fresh tomato slices, pickles, and a bucket of cheesy French fries." },
+  { id: 14, name: "Veg Manchurian with Noodles", price: "₹429", category: "Main Course", image: "/veg-manchurian-noodles.jpg", desc: "Crispy vegetable dumplings tossed in a dark, tangy soy-garlic Manchurian sauce, paired with stir-fried hakka noodles." },
+  { id: 15, name: "Paneer Masala & Paratha Feast", price: "₹449", category: "Main Course", image: "/paneer-masala-paratha-rasgulla.jpg", desc: "Rich paneer tikka masala served with flaky, layered lacha paratha, sliced green chilies, and a side bowl of sweet rasgullas." },
+  { id: 16, name: "Classic Chole Bhature Platter", price: "₹349", category: "Main Course", image: "/chole-bhature-platter.jpg", desc: "Two large, fluffy fried bhature breads served with a bowl of spicy chickpea curry, green chutney, pickle, and onions." },
+  { id: 17, name: "Tandoori Chicken Leg Quarters", price: "₹499", category: "Main Course", image: "/tandoori-chicken.jpg", desc: "Two leg quarters marinated in red yogurt spices and charcoal grilled, served with sliced onions and mint chutney." },
 
-  // Pizza
-  { id: 12, name: "Margherita Pizza", price: "₹399", category: "Pizza", image: "/dish12.jpg", desc: "Neapolitan-style crust topped with San Marzano tomato sauce, fresh mozzarella, and organic basil." },
-  { id: 13, name: "Farmhouse Pizza", price: "₹499", category: "Pizza", image: "/dish13.jpg", desc: "Traditional crust loaded with bell peppers, mushrooms, sweet corn, onions, and extra cheese." },
-  { id: 14, name: "Paneer Tandoori Pizza", price: "₹549", category: "Pizza", image: "/dish18.jpg", desc: "Crispy crust topped with spiced paneer tikka, red onions, capsicum, and coriander pesto." },
-  { id: 15, name: "Chicken Supreme Pizza", price: "₹599", category: "Pizza", image: "/dish19.jpg", desc: "Premium crust topped with grilled chicken, shredded chicken tikka, black olives, and jalapenos." },
-
-  // Pasta
-  { id: 16, name: "Alfredo Pasta", price: "₹449", category: "Pasta", image: "/dish20.jpg", desc: "Penne pasta tossed in a rich, buttery Parmesan cheese cream sauce with garlic." },
-  { id: 17, name: "Arrabbiata Pasta", price: "₹429", category: "Pasta", image: "/dish21.jpg", desc: "Penne pasta cooked in a spicy tomato sauce with garlic, chili flakes, and black olives." },
-  { id: 18, name: "Chicken Cream Pasta", price: "₹499", category: "Pasta", image: "/dish22.jpg", desc: "Fettuccine pasta in white garlic cream sauce topped with herb-grilled chicken breast." },
+  // Pizza & Pasta
+  { id: 18, name: "Fries, Pizza & Coffee Combo", price: "₹599", category: "Pizza", image: "/fries-pizza-cold-coffee.jpg", desc: "A classic personal cheese pizza served with a tray of spiced french fries and two cold coffees with chocolate drizzle." },
+  { id: 19, name: "Veg Chow Mein Noodles", price: "₹349", category: "Pasta", image: "/veg-chow-mein-noodles.jpg", desc: "Stir-fried noodles tossed with julienned carrots, cabbage, onions, and green bell peppers in light soy sauce." },
+  { id: 20, name: "Baked Fusilli Bolognese", price: "₹449", category: "Pasta", image: "/baked-fusilli-pasta.jpg", desc: "Fusilli pasta tossed in a rich minced meat bolognese sauce, loaded with mozzarella and baked until bubbly, served with garlic bread." },
 
   // Desserts
-  { id: 19, name: "Chocolate Lava Cake", price: "₹299", category: "Desserts", image: "/dish7.avif", desc: "Decadent warm dark chocolate cake filled with a gooey liquid chocolate center." },
-  { id: 20, name: "Cheesecake", price: "₹329", category: "Desserts", image: "/dish10.avif", desc: "New York-style baked cheesecake on a graham cracker crust, topped with fresh berry compote." },
-  { id: 21, name: "Brownie with Ice Cream", price: "₹349", category: "Desserts", image: "/dish23.jpg", desc: "Warm fudge brownie loaded with walnuts, served with a scoop of premium vanilla bean ice cream." },
-
-  // Beverages
-  { id: 22, name: "Cold Coffee", price: "₹199", category: "Beverages", image: "/dish24.jpg", desc: "Blended espresso shot with chilled whole milk, sweet vanilla syrup, and chocolate drizzle." },
-  { id: 23, name: "Mojito", price: "₹249", category: "Beverages", image: "/dish25.jpg", desc: "Refreshing mixture of muddled mint leaves, lime wedges, sugar syrup, white rum essence, and soda." },
-  { id: 24, name: "Fresh Lime Soda", price: "₹149", category: "Beverages", image: "/dish4.avif", desc: "Fresh lime juice mixed with mineral soda water, available sweet, salted, or mixed." },
-  { id: 25, name: "Cappuccino", price: "₹199", category: "Beverages", image: "/dish20.jpg", desc: "Double shot of espresso topped with deep layer of foamed whole milk and cocoa powder." },
-  { id: 26, name: "Fresh Juice", price: "₹249", category: "Beverages", image: "/dish21.jpg", desc: "Freshly squeezed seasonal fruits served cold without added sugars or preservatives." },
+  { id: 21, name: "Saffron Banana French Toast", price: "₹349", category: "Desserts", image: "/banana-blueberry-french-toast.avif", desc: "Thick-sliced brioche soaked in saffron cardamom custard, griddled golden, and topped with sliced bananas, blueberries, and honey." },
+  { id: 22, name: "Chocolate Waffles on Sticks", price: "₹299", category: "Desserts", image: "/chocolate-waffles-sticks.jpg", desc: "Triangular waffle slices served on sticks, heavily drizzled with milk chocolate, white chocolate sauce, and chocolate chips." },
+  { id: 23, name: "Saffron Pistachio Rasmalai", price: "₹249", category: "Desserts", image: "/saffron-rasmalai.jpg", desc: "Soft and spongy cottage cheese dumplings soaked in rich, saffron-infused cardamom milk, garnished with sliced almonds and pistachios." },
+  { id: 24, name: "Crispy Saffron Jalebi", price: "₹199", category: "Desserts", image: "/saffron-jalebi.jpg", desc: "Crispy, syrup-soaked spiral sweets infused with premium saffron strands, served warm." },
 ];
 
-const categories = ["All", "Starters", "Main Course", "Pizza", "Pasta", "Desserts", "Beverages"];
+const categories = ["All", "Starters", "Main Course", "Pizza", "Pasta", "Desserts"];
 
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("All");

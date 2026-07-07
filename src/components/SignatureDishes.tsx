@@ -5,25 +5,25 @@ import Image from "next/image";
 
 const signatureDishes = [
   {
-    name: "Truffle Infused Paneer Tikka",
-    description: "Premium paneer chunks marinated in white truffle paste, hung curd, and a blend of artisanal spices, charcoal roasted.",
+    name: "Saffron Banana French Toast",
+    description: "Artisanal thick-sliced brioche soaked in saffron cardamom batter, griddled golden, and loaded with sliced bananas and fresh blueberries.",
     price: "₹349",
-    image: "/dish3.avif",
-    tag: "Signature Starter",
+    image: "/banana-blueberry-french-toast.avif",
+    tag: "Signature Dessert",
   },
   {
-    name: "L&apos;Étoile Butter Chicken",
-    description: "Slow-cooked organic chicken thighs in a smooth satin gravy of vine-ripened tomatoes, cashew butter, and dried fenugreek.",
-    price: "₹549",
-    image: "/dish9.avif",
+    name: "L&apos;Étoile BBQ Pork Ribs Board",
+    description: "Double slabs of tender pork ribs dry-rubbed with signature spices, wood-fire smoked, and glazed in premium tangy house BBQ sauce.",
+    price: "₹699",
+    image: "/bbq-pork-ribs-board.avif",
     tag: "Chef Special Main",
   },
   {
-    name: "Smoked Mutton Rogan Josh",
-    description: "Tender Kashmiri lamb shank slow-braised in a traditional vessel with red chili, cardamom, and saffron essence.",
-    price: "₹699",
-    image: "/dish14.jpg",
-    tag: "Award Winning",
+    name: "Gourmet Steamed Momos",
+    description: "Delicately folded thin-skin dumplings filled with seasoned vegetables, served with fire-roasted red chili sauce and garlic mayonnaise.",
+    price: "₹279",
+    image: "/steamed-momos.jpg",
+    tag: "Artisanal Starter",
   },
 ];
 
