@@ -126,18 +126,14 @@ export default function Menu() {
         </div>
 
         {/* Menu Grid */}
-        <motion.div 
-          layout 
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredMenu.map((item) => (
               <motion.div
-                layout
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.25 }}
                 key={item.id}
                 className="glass-panel p-4 flex gap-5 hover:border-gold-500/20 transition-all duration-300 group"
               >
@@ -206,7 +202,7 @@ export default function Menu() {
 
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Empty State */}
         {filteredMenu.length === 0 && (

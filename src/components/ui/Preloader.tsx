@@ -7,8 +7,8 @@ export default function Preloader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Premium loading delay
-    const timer = setTimeout(() => setLoading(false), 2400);
+    // Premium loading delay (reduced for performance and faster interaction)
+    const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 

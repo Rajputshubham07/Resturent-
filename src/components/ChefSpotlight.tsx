@@ -48,6 +48,8 @@ function Counter({ endValue, duration = 2 }: { endValue: number; duration?: numb
 }
 
 export default function ChefSpotlight() {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   return (
     <section className="py-24 bg-luxury-dark border-t border-b border-gold-500/5 relative overflow-hidden">
       {/* Background Accent */}
@@ -61,22 +63,29 @@ export default function ChefSpotlight() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            onViewportEnter={() => setVideoLoaded(true)}
             transition={{ duration: 1 }}
-            className="lg:col-span-6 relative h-[400px] md:h-[500px] w-full overflow-hidden border border-gold-500/20 shadow-2xl group"
+            className="lg:col-span-6 relative h-[400px] md:h-[500px] w-full overflow-hidden border border-gold-500/20 shadow-2xl group bg-luxury-black"
           >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
-            >
-              <source src="/Resturent Kitchen.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {videoLoaded ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
+              >
+                <source src="/Resturent Kitchen.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-luxury-black/40">
+                <div className="w-8 h-8 border-2 border-gold-500/20 border-t-gold-500 rounded-full animate-spin" />
+              </div>
+            )}
             
             {/* Tag on Video */}
-            <div className="absolute bottom-6 left-6 px-4 py-2 bg-luxury-black/80 backdrop-blur-md border border-gold-500/20">
+            <div className="absolute bottom-6 left-6 px-4 py-2 bg-luxury-black/80 backdrop-blur-md border border-gold-500/20 z-10">
               <span className="text-[10px] tracking-[0.25em] text-gold-500 uppercase font-semibold">Live Kitchen Action</span>
             </div>
           </motion.div>
