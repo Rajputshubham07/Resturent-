@@ -17,7 +17,7 @@ const events = [
     date: "Every Sunday",
     time: "11:00 AM - 3:00 PM",
     desc: "A luxurious buffet spread of artisanal breads, live carving stations, custom waffles, and bottomless premium mimosas.",
-    image: "/dish20.jpg",
+    image: "/paneer-masala-paratha-rasgulla.jpg",
   },
   {
     title: "Chef&apos;s Special Tasting",

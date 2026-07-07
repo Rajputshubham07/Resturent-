@@ -3,22 +3,31 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Menu", href: "#menu" },
-  { name: "Reservations", href: "#reservations" },
-  { name: "Events", href: "#events" },
-  { name: "Gallery", href: "#gallery" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/#home" },
+  { name: "About", href: "/#about" },
+  { name: "Menu", href: "/#menu" },
+  { name: "Reservations", href: "/#reservations" },
+  { name: "Events", href: "/#events" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Contact", href: "/#contact" },
 ];
+
+const getSectionFromHref = (href: string) => {
+  if (href.startsWith("/#")) return href.substring(2);
+  if (href.startsWith("#")) return href.substring(1);
+  if (href.startsWith("/")) return href.substring(1);
+  return href;
+};
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const pathname = usePathname();
 
   useEffect(() => {
     // Initial theme setup on mount
@@ -47,6 +56,11 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    if (pathname === "/gallery") {
+      setActiveSection("gallery");
+      return;
+    }
+
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setIsScrolled(true);
@@ -55,14 +69,19 @@ export default function Navbar() {
       }
 
       // Check which section is in view
-      const sections = navLinks.map(link => link.href.substring(1));
+      const sections = navLinks
+        .map(link => {
+          if (link.href.startsWith("/#")) return link.href.substring(2);
+          if (link.href.startsWith("#")) return link.href.substring(1);
+          return null;
+        })
+        .filter(Boolean) as string[];
       let currentSection = "home";
 
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
           const rect = el.getBoundingClientRect();
-          // If the section is around the top half of the screen
           if (rect.top <= 200 && rect.bottom >= 200) {
             currentSection = section;
             break;
@@ -74,15 +93,19 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
+    if (!href.startsWith("#") && !href.startsWith("/#")) {
+      setMobileMenuOpen(false);
+      return;
+    }
     
-    const targetId = href.substring(1);
+    const targetId = href.startsWith("/#") ? href.substring(2) : href.substring(1);
     const element = document.getElementById(targetId);
     if (element) {
+      e.preventDefault();
+      setMobileMenuOpen(false);
       const offset = 80; // height of navbar
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
@@ -93,6 +116,8 @@ export default function Navbar() {
         top: offsetPosition,
         behavior: "smooth"
       });
+    } else {
+      setMobileMenuOpen(false);
     }
   };
 
@@ -119,7 +144,7 @@ export default function Navbar() {
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
+              const isActive = activeSection === getSectionFromHref(link.href);
               return (
                 <a
                   key={link.name}
@@ -152,8 +177,8 @@ export default function Navbar() {
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
             <a
-              href="#reservations"
-              onClick={(e) => handleNavClick(e, "#reservations")}
+              href="/#reservations"
+              onClick={(e) => handleNavClick(e, "/#reservations")}
               className="px-6 py-2.5 border border-gold-500/40 text-gold-500 hover:text-luxury-black hover:bg-gold-500 hover:border-gold-500 text-xs tracking-[0.15em] uppercase font-semibold transition-all duration-500 rounded-none cursor-pointer"
             >
               Book A Table
@@ -183,7 +208,7 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-6 items-center justify-center flex-1">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
+                const isActive = activeSection === getSectionFromHref(link.href);
                 return (
                   <a
                     key={link.name}
@@ -216,9 +241,9 @@ export default function Navbar() {
                   )}
                 </button>
                 <a
-                  href="#reservations"
-                  onClick={(e) => handleNavClick(e, "#reservations")}
-                  className="w-full py-3 bg-gold-500 text-luxury-black font-semibold text-xs tracking-[0.2em] uppercase rounded-none text-center cursor-pointer"
+                  href="/#reservations"
+                  onClick={(e) => handleNavClick(e, "/#reservations")}
+                  className="w-full py-3 bg-gold-500 text-luxury-black text-xs uppercase tracking-widest font-bold text-center hover:bg-gold-600 transition-colors duration-300"
                 >
                   Book A Table
                 </a>
