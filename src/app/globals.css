@@ -21,6 +21,12 @@
   --color-luxury-gray: var(--panel-bg);
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+}
+
 :root {
   --gold-primary: #916f43; /* Rich darker gold for high contrast on light backgrounds */
   --background: #fbfaf8;
@@ -33,7 +39,6 @@
   --nav-bg: rgba(251, 250, 248, 0.85);
   --scrollbar-thumb: #916f43;
   --scrollbar-track: #fbfaf8;
-  scroll-behavior: smooth;
 }
 
 .dark {
