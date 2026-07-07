@@ -177,13 +177,25 @@ export async function POST(request: Request) {
     }
 
     // Persist order in orders.json
+    const globalRef = global as any;
+    if (globalRef.ordersCache === undefined) {
+      globalRef.ordersCache = null;
+    }
+
     const ordersPath = path.join(process.cwd(), "src/data/orders.json");
     let ordersList = [];
-    try {
-      const ordersData = await fs.readFile(ordersPath, "utf-8");
-      ordersList = JSON.parse(ordersData);
-    } catch (e) {
-      ordersList = [];
+
+    if (globalRef.ordersCache !== null) {
+      ordersList = globalRef.ordersCache;
+    } else {
+      try {
+        const ordersData = await fs.readFile(ordersPath, "utf-8");
+        ordersList = JSON.parse(ordersData);
+        globalRef.ordersCache = ordersList;
+      } catch (e) {
+        ordersList = [];
+        globalRef.ordersCache = [];
+      }
     }
 
     const orderObj = {
@@ -206,7 +218,12 @@ export async function POST(request: Request) {
     };
 
     ordersList.push(orderObj);
-    await fs.writeFile(ordersPath, JSON.stringify(ordersList, null, 2), "utf-8");
+    globalRef.ordersCache = ordersList;
+    try {
+      await fs.writeFile(ordersPath, JSON.stringify(ordersList, null, 2), "utf-8");
+    } catch (e: any) {
+      console.warn("Filesystem is read-only. Falling back to in-memory orders cache:", e.message);
+    }
 
     return NextResponse.json({
       success: true,

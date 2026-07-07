@@ -13,12 +13,23 @@ export async function GET(request: Request) {
       return NextResponse.json({ message: "Missing mobile number" }, { status: 400 });
     }
 
+    const globalRef = global as any;
+    if (globalRef.ordersCache === undefined) {
+      globalRef.ordersCache = null;
+    }
+
     let orders = [];
-    try {
-      const data = await fs.readFile(ordersPath, "utf-8");
-      orders = JSON.parse(data);
-    } catch (e) {
-      orders = [];
+    if (globalRef.ordersCache !== null) {
+      orders = globalRef.ordersCache;
+    } else {
+      try {
+        const data = await fs.readFile(ordersPath, "utf-8");
+        orders = JSON.parse(data);
+        globalRef.ordersCache = orders;
+      } catch (e) {
+        orders = [];
+        globalRef.ordersCache = [];
+      }
     }
 
     // Filter orders by mobile number and return newest first

@@ -4,19 +4,35 @@ import path from "path";
 
 const sessionsPath = path.join(process.cwd(), "src/data/sessions.json");
 
+// Global cache for Vercel read-only fallback
+const globalRef = global as any;
+if (globalRef.sessionsCache === undefined) {
+  globalRef.sessionsCache = null;
+}
+
 // Helper to read sessions
 async function readSessions() {
+  if (globalRef.sessionsCache !== null) {
+    return globalRef.sessionsCache;
+  }
   try {
     const data = await fs.readFile(sessionsPath, "utf-8");
-    return JSON.parse(data);
+    globalRef.sessionsCache = JSON.parse(data);
+    return globalRef.sessionsCache;
   } catch (error) {
+    globalRef.sessionsCache = [];
     return [];
   }
 }
 
 // Helper to write sessions
 async function writeSessions(sessions: any[]) {
-  await fs.writeFile(sessionsPath, JSON.stringify(sessions, null, 2), "utf-8");
+  globalRef.sessionsCache = sessions;
+  try {
+    await fs.writeFile(sessionsPath, JSON.stringify(sessions, null, 2), "utf-8");
+  } catch (error: any) {
+    console.warn("Filesystem is read-only. Falling back to in-memory session cache:", error.message);
+  }
 }
 
 export async function GET() {
