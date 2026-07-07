@@ -366,6 +366,13 @@ export default function AdminDashboard() {
             >
               Access Dashboard
             </button>
+
+            <a
+              href="/"
+              className="inline-block mt-4 text-[10px] uppercase tracking-wider text-gray-500 hover:text-white transition-colors cursor-pointer"
+            >
+              ← Exit to Main Site
+            </a>
           </form>
         </motion.div>
       </section>
@@ -390,12 +397,20 @@ export default function AdminDashboard() {
             </h2>
           </div>
           
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-900 hover:border-red-500/40 text-gray-500 hover:text-red-500 transition-all text-xs uppercase tracking-wider rounded-none cursor-pointer"
-          >
-            <LogOut className="w-3.5 h-3.5" /> Logout
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href="/"
+              className="flex items-center gap-1.5 px-4 py-2 border border-gray-900 hover:border-white text-gray-500 hover:text-white transition-all text-xs uppercase tracking-wider rounded-none cursor-pointer"
+            >
+              Exit to Site
+            </a>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-900 hover:border-red-500/40 text-gray-500 hover:text-red-500 transition-all text-xs uppercase tracking-wider rounded-none cursor-pointer"
+            >
+              <LogOut className="w-3.5 h-3.5" /> Logout
+            </button>
+          </div>
         </div>
 
         {/* Tab Controls */}
