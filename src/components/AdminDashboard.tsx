@@ -375,6 +375,11 @@ export default function AdminDashboard() {
             </a>
           </form>
         </motion.div>
+
+        {/* Signature on login gate */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center text-gray-600">
+          <span className="text-[10px] tracking-wider text-gold-500/60 uppercase font-light">Made by -shubham singh 💕</span>
+        </div>
       </section>
     );
   }
@@ -990,6 +995,11 @@ export default function AdminDashboard() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Signature */}
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-900 flex justify-center items-center text-xs font-light text-gray-600">
+        <span className="text-[10px] tracking-wider text-gold-500/60 uppercase">Made by -shubham singh 💕</span>
+      </div>
     </section>
   );
 }

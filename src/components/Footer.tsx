@@ -114,7 +114,10 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-light text-gray-600">
-        <span>© {new Date().getFullYear()} L&apos;Étoile Restaurant. All rights reserved.</span>
+        <div className="flex flex-col gap-1 items-center sm:items-start">
+          <span>© {new Date().getFullYear()} L&apos;Étoile Restaurant. All rights reserved.</span>
+          <span className="text-[10px] tracking-wider text-gold-500/60 uppercase">Made by -shubham singh 💕</span>
+        </div>
         <div className="flex gap-6">
           <a href="#" className="hover:text-gold-500">Privacy Policy</a>
           <a href="#" className="hover:text-gold-500">Terms of Service</a>
