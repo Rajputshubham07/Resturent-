@@ -119,10 +119,10 @@ export default function Contact() {
             <div className="relative w-full h-64 overflow-hidden border border-gray-900 shadow-2xl">
               <iframe
                 title="L'Étoile Restaurant Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.5620138981295!2d77.22732107693952!3d28.61393907567406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5d3ec85555%3A0xe5a3c00424597d39!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://maps.google.com/maps?q=India%20Gate,New%20Delhi&t=k&z=17&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) grayscale(100%) contrast(120%)" }}
+                style={{ border: 0 }}
                 allowFullScreen={false}
                 loading="lazy"
               />
