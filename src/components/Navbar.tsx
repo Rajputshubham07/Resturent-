@@ -8,8 +8,8 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { name: "Home", href: "/#home" },
   { name: "About", href: "/#about" },
-  { name: "Menu", href: "/#menu" },
-  { name: "Reservations", href: "/#reservations" },
+  { name: "Menu", href: "/menu" },
+  { name: "Reservations", href: "/reservations" },
   { name: "Events", href: "/#events" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/#contact" },
@@ -58,6 +58,14 @@ export default function Navbar() {
   useEffect(() => {
     if (pathname === "/gallery") {
       setActiveSection("gallery");
+      return;
+    }
+    if (pathname === "/menu") {
+      setActiveSection("menu");
+      return;
+    }
+    if (pathname === "/reservations") {
+      setActiveSection("reservations");
       return;
     }
 

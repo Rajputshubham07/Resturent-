@@ -5,8 +5,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import ChefSpotlight from "@/components/ChefSpotlight";
 import SignatureDishes from "@/components/SignatureDishes";
-import Menu from "@/components/Menu";
-import Reservations from "@/components/Reservations";
 import Events from "@/components/Events";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
@@ -28,8 +26,6 @@ export default function Home() {
         <About />
         <ChefSpotlight />
         <SignatureDishes />
-        <Menu />
-        <Reservations />
         <Events />
         <Testimonials />
         <Contact />
