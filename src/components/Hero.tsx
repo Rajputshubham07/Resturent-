@@ -1,26 +1,55 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-w: 768px)");
+    setIsMobile(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
   return (
     <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-65 scale-[1.02]"
-      >
-        <source
-          src="/A Cinematic Restaurant Commercial - Panasonic Lumix GH5s footage __ Salute Cafe & Bar_1080p.mp4"
-          type="video/mp4"
+      {/* Background Media */}
+      {isMobile === null ? (
+        <div className="absolute inset-0 bg-luxury-black opacity-65 scale-[1.02]" />
+      ) : isMobile ? (
+        <Image
+          src="/interior1.avif"
+          alt="L'Étoile Luxury Restaurant"
+          fill
+          priority
+          fetchPriority="high"
+          className="object-cover opacity-65 scale-[1.02]"
         />
-        Your browser does not support the video tag.
-      </video>
+      ) : (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-65 scale-[1.02]"
+        >
+          <source
+            src="/A Cinematic Restaurant Commercial - Panasonic Lumix GH5s footage __ Salute Cafe & Bar_1080p.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      )}
 
       {/* Luxury Radial/Vignette Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-85% to-luxury-black z-10" />

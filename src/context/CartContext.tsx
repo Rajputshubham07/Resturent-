@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 export interface CartItem {
   id: number;
@@ -39,12 +39,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Save cart to localStorage on changes
+  // Save cart to localStorage on changes asynchronously to avoid blocking UI thread
   useEffect(() => {
-    localStorage.setItem("etoile_cart", JSON.stringify(cartItems));
+    const saveCartAsync = () => {
+      localStorage.setItem("etoile_cart", JSON.stringify(cartItems));
+    };
+
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const handle = window.requestIdleCallback(saveCartAsync);
+        return () => window.cancelIdleCallback(handle);
+      } else {
+        const timeout = setTimeout(saveCartAsync, 0);
+        return () => clearTimeout(timeout);
+      }
+    }
   }, [cartItems]);
 
-  const addToCart = (item: { id: number; name: string; price: string; image: string; category: string }) => {
+  const addToCart = useCallback((item: { id: number; name: string; price: string; image: string; category: string }) => {
     setCartItems((prevItems) => {
       const existing = prevItems.find((i) => i.id === item.id);
       const numericPrice = Number(item.price.replace(/[^0-9]/g, ""));
@@ -66,13 +78,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         },
       ];
     });
-  };
+  }, []);
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = useCallback((id: number) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
+  }, []);
 
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = useCallback((id: number, quantity: number) => {
     if (quantity <= 0) {
       removeFromCart(id);
       return;
@@ -82,11 +94,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         item.id === id ? { ...item, quantity } : item
       )
     );
-  };
+  }, [removeFromCart]);
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCartItems([]);
-  };
+  }, []);
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const subtotal = cartItems.reduce(

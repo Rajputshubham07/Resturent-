@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 
 function Counter({ endValue, duration = 2 }: { endValue: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -49,6 +50,19 @@ function Counter({ endValue, duration = 2 }: { endValue: number; duration?: numb
 
 export default function ChefSpotlight() {
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-w: 768px)");
+    setIsMobile(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
 
   return (
     <section className="py-24 bg-luxury-dark border-t border-b border-gold-500/5 relative overflow-hidden">
@@ -58,7 +72,7 @@ export default function ChefSpotlight() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
-          {/* Left Side: Chef Video Player */}
+          {/* Left Side: Chef Video Player / Fallback Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -67,7 +81,19 @@ export default function ChefSpotlight() {
             transition={{ duration: 1 }}
             className="lg:col-span-6 relative h-[400px] md:h-[500px] w-full overflow-hidden border border-gold-500/20 shadow-2xl group bg-luxury-black"
           >
-            {videoLoaded ? (
+            {isMobile === null ? (
+              <div className="absolute inset-0 flex items-center justify-center bg-luxury-black/40">
+                <div className="w-8 h-8 border-2 border-gold-500/20 border-t-gold-500 rounded-full animate-spin" />
+              </div>
+            ) : isMobile ? (
+              <Image
+                src="/interior3.avif"
+                alt="Chef Spotlight Kitchen"
+                fill
+                sizes="(max-w-768px) 100vw, 500px"
+                className="object-cover transition-all duration-75"
+              />
+            ) : videoLoaded ? (
               <video
                 autoPlay
                 loop
@@ -84,9 +110,11 @@ export default function ChefSpotlight() {
               </div>
             )}
             
-            {/* Tag on Video */}
+            {/* Tag on Media */}
             <div className="absolute bottom-6 left-6 px-4 py-2 bg-luxury-black/80 backdrop-blur-md border border-gold-500/20 z-10">
-              <span className="text-[10px] tracking-[0.25em] text-gold-500 uppercase font-semibold">Live Kitchen Action</span>
+              <span className="text-[10px] tracking-[0.25em] text-gold-500 uppercase font-semibold">
+                {isMobile ? "Kitchen Gallery" : "Live Kitchen Action"}
+              </span>
             </div>
           </motion.div>
 

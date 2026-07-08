@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search } from "lucide-react";
 import Image from "next/image";
@@ -42,6 +42,82 @@ const menuData = [
 ];
 
 const categories = ["All", "Starters", "Main Course", "Pizza", "Pasta", "Desserts"];
+
+// Memoized menu item card to prevent rendering lag during cart changes
+const MenuItemCard = memo(({ item, cartItem, addToCart, updateQuantity }: {
+  item: typeof menuData[0];
+  cartItem: any;
+  addToCart: any;
+  updateQuantity: any;
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.25 }}
+      className="glass-panel p-4 flex gap-5 hover:border-gold-500/20 transition-all duration-300 group"
+    >
+      {/* Image */}
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 overflow-hidden border border-gold-500/5">
+        <Image
+          src={item.image}
+          alt={item.name}
+          fill
+          sizes="112px"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+
+      {/* Info */}
+      <div className="flex flex-col justify-between flex-grow">
+        <div className="flex flex-col gap-1.5">
+          <div className="flex justify-between items-baseline gap-2">
+            <h3 className="font-serif text-sm sm:text-base text-white tracking-wide uppercase group-hover:text-gold-500 transition-colors duration-300">
+              {item.name}
+            </h3>
+            <div className="h-[1px] flex-grow border-b border-dotted border-gray-850 mx-2 hidden sm:block" />
+            <span className="text-gold-500 font-serif text-sm sm:text-base tracking-widest">{item.price}</span>
+          </div>
+          <p className="text-[11px] sm:text-xs text-gray-500 font-light leading-relaxed">
+            {item.desc}
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-900/50">
+          <span className="text-[9px] tracking-[0.2em] text-gray-600 uppercase">{item.category}</span>
+          <div>
+            {cartItem ? (
+              <div className="flex items-center gap-2.5">
+                <button 
+                  onClick={() => updateQuantity(item.id, cartItem.quantity - 1)}
+                  className="w-6 h-6 border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-luxury-black transition-colors text-xs font-light cursor-pointer"
+                >
+                  -
+                </button>
+                <span className="text-white text-xs font-medium w-4 text-center">{cartItem.quantity}</span>
+                <button 
+                  onClick={() => updateQuantity(item.id, cartItem.quantity + 1)}
+                  className="w-6 h-6 border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-luxury-black transition-colors text-xs font-light cursor-pointer"
+                >
+                  +
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => addToCart({ id: item.id, name: item.name, price: item.price, image: item.image, category: item.category })}
+                className="px-4 py-1.5 border border-gold-500/30 text-gold-500 hover:bg-gold-500 hover:text-luxury-black text-[9px] tracking-[0.15em] uppercase font-semibold transition-all duration-300 rounded-none cursor-pointer"
+              >
+                Add to Cart
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+});
+MenuItemCard.displayName = "MenuItemCard";
 
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -127,79 +203,15 @@ export default function Menu() {
 
         {/* Menu Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {filteredMenu.map((item) => (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25 }}
-                key={item.id}
-                className="glass-panel p-4 flex gap-5 hover:border-gold-500/20 transition-all duration-300 group"
-              >
-                {/* Image */}
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 overflow-hidden border border-gold-500/5">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    sizes="112px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                {/* Info */}
-                <div className="flex flex-col justify-between flex-grow">
-                  <div className="flex flex-col gap-1.5">
-                    <div className="flex justify-between items-baseline gap-2">
-                      <h3 className="font-serif text-sm sm:text-base text-white tracking-wide uppercase group-hover:text-gold-500 transition-colors duration-300">
-                        {item.name}
-                      </h3>
-                      <div className="h-[1px] flex-grow border-b border-dotted border-gray-850 mx-2 hidden sm:block" />
-                      <span className="text-gold-500 font-serif text-sm sm:text-base tracking-widest">{item.price}</span>
-                    </div>
-                    <p className="text-[11px] sm:text-xs text-gray-500 font-light leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                  
-                  {(() => {
-                    const cartItem = cartItems.find((i) => i.id === item.id);
-                    return (
-                      <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-900/50">
-                        <span className="text-[9px] tracking-[0.2em] text-gray-600 uppercase">{item.category}</span>
-                        <div>
-                          {cartItem ? (
-                            <div className="flex items-center gap-2.5">
-                              <button 
-                                onClick={() => updateQuantity(item.id, cartItem.quantity - 1)}
-                                className="w-6 h-6 border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-luxury-black transition-colors text-xs font-light cursor-pointer"
-                              >
-                                -
-                              </button>
-                              <span className="text-white text-xs font-medium w-4 text-center">{cartItem.quantity}</span>
-                              <button 
-                                onClick={() => updateQuantity(item.id, cartItem.quantity + 1)}
-                                className="w-6 h-6 border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-luxury-black transition-colors text-xs font-light cursor-pointer"
-                              >
-                                +
-                              </button>
-                            </div>
-                          ) : (
-                            <button
-                              onClick={() => addToCart({ id: item.id, name: item.name, price: item.price, image: item.image, category: item.category })}
-                              className="px-4 py-1.5 border border-gold-500/30 text-gold-500 hover:bg-gold-500 hover:text-luxury-black text-[9px] tracking-[0.15em] uppercase font-semibold transition-all duration-300 rounded-none cursor-pointer"
-                            >
-                              Add to Cart
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })()}
-                </div>
-              </motion.div>
-
+              <MenuItemCard 
+                key={item.id} 
+                item={item} 
+                cartItem={cartItems.find((i) => i.id === item.id)} 
+                addToCart={addToCart} 
+                updateQuantity={updateQuantity} 
+              />
             ))}
           </AnimatePresence>
         </div>
